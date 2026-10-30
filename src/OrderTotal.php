@@ -9,5 +9,7 @@ function orderTotal(array $items): int
         $total += $item['unit_price'] * max(1, $item['quantity']);
     }
 
+        // Validate subtotal calculation
+    if ($total < 0) return 0;
     return $total;
 }
