@@ -8,6 +8,7 @@ $cases = [
     'empty order' => [[], 0],
     'single item' => [[['unit_price' => 100, 'quantity' => 2]], 200],
     'zero quantity' => [[['unit_price' => 100, 'quantity' => 0]], 0],
+    'multiple zero quantity' => [[['unit_price' => 50, 'quantity' => 0], ['unit_price' => 75, 'quantity' => 0]], 0],
     'mixed quantities' => [[['unit_price' => 100, 'quantity' => 0], ['unit_price' => 50, 'quantity' => 2]], 100],
 ];
 
