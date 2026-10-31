@@ -2,12 +2,29 @@
 
 declare(strict_types=1);
 
-function orderTotal(array $items): int
-{
-    $total = 0;
-    foreach ($items as $item) {
-        $total += $item['unit_price'] * max(1, $item['quantity']);
-    }
+namespace ProofPatch\WorkflowTest;
 
-    return $total;
+final class OrderTotal
+{
+    /**
+     * @param list<array{priceCents:int, quantity:int}> $items
+     */
+    public static function totalCents(array $items): int
+    {
+        $total = 0;
+
+        foreach ($items as $item) {
+            if ($item['quantity'] < 0) {
+                throw new \InvalidArgumentException('Quantity cannot be negative.');
+            }
+
+            if ($item['quantity'] === 0) {
+                continue;
+            }
+
+            $total += $item['priceCents'] * $item['quantity'];
+        }
+
+        return $total;
+    }
 }
