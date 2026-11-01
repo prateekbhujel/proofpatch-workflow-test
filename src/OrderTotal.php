@@ -6,7 +6,7 @@ function orderTotal(array $items): int
 {
     $total = 0;
     foreach ($items as $item) {
-        $total += $item['unit_price'] * max(1, $item['quantity']);
+        $total += $item['unit_price'] * max(0, $item['quantity']);
     }
 
     return $total;
